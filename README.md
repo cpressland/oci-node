@@ -17,7 +17,7 @@ ghcr.io/cpressland/oci-node:latest
 Copy the runtime into your devcontainer image:
 
 ```dockerfile
-COPY --from=ghcr.io/cpressland/oci-node:latest / /usr/local/
+COPY --from=ghcr.io/cpressland/oci-node:latest / /
 ```
 
 ## Version updates

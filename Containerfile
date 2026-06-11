@@ -12,9 +12,9 @@ RUN case "${TARGETARCH}" in \
     "arm64")  ARCH="arm64" ;; \
     *) echo "Unsupported architecture: ${TARGETARCH}"; exit 1 ;; \
     esac && \
-    curl --retry 5 --retry-all-errors -fSsL -o /tmp/node.tar.gz \
-    "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-${ARCH}.tar.gz" && \
-    tar -xzf /tmp/node.tar.gz -C /node --strip-components=1 --no-same-owner --wildcards "*/bin" "*/include" "*/lib" "*/share"
+    curl --retry 5 --retry-all-errors -fSsL \
+    "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-${ARCH}.tar.gz" | \
+    tar -xz -C /node --strip-components=1 --no-same-owner --wildcards "*/bin" "*/include" "*/lib" "*/share"
 
 ENV PATH="/node/bin:$PATH"
 
@@ -28,4 +28,4 @@ RUN npm config set fetch-retries 10 && \
     done
 
 FROM scratch
-COPY --from=build /node /
+COPY --from=build /node /usr/local
