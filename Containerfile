@@ -5,7 +5,7 @@ ARG NODE_VERSION=24.16.0
 
 RUN apt-get update && apt-get install -y curl ca-certificates tar gzip
 
-RUN mkdir /node
+RUN mkdir -p /dist/usr/local
 
 RUN case "${TARGETARCH}" in \
     "amd64")  ARCH="x64" ;; \
@@ -14,9 +14,9 @@ RUN case "${TARGETARCH}" in \
     esac && \
     curl --retry 5 --retry-all-errors -fSsL \
     "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-${ARCH}.tar.gz" | \
-    tar -xz -C /node --strip-components=1 --no-same-owner --wildcards "*/bin" "*/include" "*/lib" "*/share"
+    tar -xz -C /dist/usr/local --strip-components=1 --no-same-owner --wildcards "*/bin" "*/include" "*/lib" "*/share"
 
-ENV PATH="/node/bin:$PATH"
+ENV PATH="/dist/usr/local/bin:$PATH"
 
 RUN npm config set fetch-retries 10 && \
     npm config set fetch-retry-mintimeout 20000 && \
@@ -28,4 +28,4 @@ RUN npm config set fetch-retries 10 && \
     done
 
 FROM scratch
-COPY --from=build /node /usr/local
+COPY --from=build /dist /
