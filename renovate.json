@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^Containerfile$"],
+      "matchStrings": ["ARG NODE_VERSION=(?<currentValue>[\\d.]+)"],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version"
+    }
+  ]
+}
