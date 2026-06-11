@@ -1,4 +1,4 @@
-FROM docker.io/debian:13 AS build
+FROM docker.io/debian:trixie-20260610 AS build
 
 ARG TARGETARCH
 ARG NODE_VERSION=24.16.0
