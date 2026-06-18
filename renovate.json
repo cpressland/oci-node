@@ -8,5 +8,11 @@
       "depNameTemplate": "node",
       "datasourceTemplate": "node-version"
     }
+  ],
+  "packageRules": [
+    {
+      "matchDepNames": ["debian"],
+      "enabled": false
+    }
   ]
 }
