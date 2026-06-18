@@ -9,7 +9,7 @@ The `Containerfile` downloads a pinned release of Node.js from the official dist
 The image is built for `linux/amd64` and `linux/arm64` via GitHub Actions and published to the GitHub Container Registry at:
 
 ```
-ghcr.io/cpressland/oci-node:latest
+ghcr.io/thredd-platform/oci-node:latest
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ ghcr.io/cpressland/oci-node:latest
 Copy the runtime into your devcontainer image:
 
 ```dockerfile
-COPY --from=ghcr.io/cpressland/oci-node:latest / /
+COPY --from=ghcr.io/thredd-platform/oci-node:latest / /
 ```
 
 ## Version updates
